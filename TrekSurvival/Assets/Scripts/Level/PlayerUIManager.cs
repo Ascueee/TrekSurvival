@@ -15,6 +15,7 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] float fadeInTime;
     bool fadeIn;
     bool fadeOut;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,8 @@ public class PlayerUIManager : MonoBehaviour
         UpdateAmmoText();
         UpdateHealthText();
     }
+
+
 
     void UpdateAmmoText()
     {

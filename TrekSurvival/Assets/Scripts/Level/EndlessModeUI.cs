@@ -29,11 +29,13 @@ public class EndlessModeUI : MonoBehaviour
     float elapsedTime;
     bool fadeIn;
     bool deathFade;
+    bool gamePaused;
     int min;
     int second;
 
     private void Start()
     {
+        gamePaused = false;
         fadeIn = true;
     }
     // Update is called once per frame
@@ -59,11 +61,31 @@ public class EndlessModeUI : MonoBehaviour
         UpdateRoundText();
         UpdateObjectiveText();
         UpdateTimer();
+
+        CheckForPause();
     }
 
     void UpdateRoundText()
     {
         roundText.text = "Rounds: " + endlessModeManager.GetComponent<EndlessModeManager>().GetRounds();
+    }
+
+    void CheckForPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(gamePaused == false)
+            {
+                Time.timeScale = 0;
+
+                gamePaused = true;
+            }
+            else if(gamePaused == true)
+            {
+                Time.timeScale = 1;
+                gamePaused = false;
+            }
+        }
     }
 
     void UpdateTimer()
@@ -164,6 +186,7 @@ public class EndlessModeUI : MonoBehaviour
 
         gameOver.color = alphaChange;
     }
+
 
 
     public void GoToMenu()

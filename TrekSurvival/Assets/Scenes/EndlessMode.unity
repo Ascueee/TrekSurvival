@@ -6900,6 +6900,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 673270293}
     - target: {fileID: 3934976070816236894, guid: 5e01cc41eb030294396c6db300fdc4d1, type: 3}
+      propertyPath: gamePausedText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934976070816236894, guid: 5e01cc41eb030294396c6db300fdc4d1, type: 3}
       propertyPath: currentObjective
       value: 
       objectReference: {fileID: 73259163}
