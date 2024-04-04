@@ -26,6 +26,12 @@ public class EndlessModeUI : MonoBehaviour
     [SerializeField] Camera deathCam;
     [SerializeField] GameObject player;
 
+    [Header("Pause UI Vars")]
+    [SerializeField] TextMeshProUGUI pauseText;
+    [SerializeField] Button playAgainPause;
+    [SerializeField] Button quitPause;
+    [SerializeField] Button restart;
+
     float elapsedTime;
     bool fadeIn;
     bool deathFade;
@@ -76,14 +82,15 @@ public class EndlessModeUI : MonoBehaviour
         {
             if(gamePaused == false)
             {
+                pauseText.gameObject.SetActive(true);
+                playAgainPause.gameObject.SetActive(true);
+                quitPause.gameObject.SetActive(true);
+                restart.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
                 Time.timeScale = 0;
 
                 gamePaused = true;
-            }
-            else if(gamePaused == true)
-            {
-                Time.timeScale = 1;
-                gamePaused = false;
+
             }
         }
     }
@@ -187,15 +194,26 @@ public class EndlessModeUI : MonoBehaviour
         gameOver.color = alphaChange;
     }
 
-
+    public void UnPause()
+    {
+        pauseText.gameObject.SetActive(false);
+        playAgainPause.gameObject.SetActive(false);
+        quitPause.gameObject.SetActive(false);
+        restart.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        gamePaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     public void GoToMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneIndex);
     }
 
